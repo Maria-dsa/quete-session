@@ -1,17 +1,24 @@
-<?php require 'inc/head.php';
+<?php
+session_start();
+require 'inc/head.php';
 require 'inc/data/products.php';
-
 ?>
-<?php session_start(); ?>
-<?php require 'inc/head.php'; ?>
+
 <section class="cookies container-fluid">
     <div class="row">
         <?php
-        $cart = array_count_values($_SESSION['cart']);
-        foreach ($cart as $key => $value) {
-            echo $value . ' of ' . $catalog[$key]['name'] . '<br>';
-        }
-        ?>
+        if (isset($_SESSION['cart'])) {
+            foreach ($catalog as $key => $cookie) {
+                foreach ($_SESSION['cart'] as $cookieId) {
+                    if ($key == $cookieId) {
+        ?><li><?= $cookie['name'] ?></li><?php
+                        }
+                      }
+                    }
+              } else {
+                      echo '';
+                     }
+    ?>
     </div>
 </section>
 <?php require 'inc/foot.php'; ?>
