@@ -1,3 +1,9 @@
+<?php
+session_start();
+require 'inc/head.php';
+require 'inc/data/products.php';
+?>
+
 <section class="cookies container-fluid">
     <div class="row">
         <?php
@@ -5,13 +11,13 @@
             foreach ($catalog as $key => $cookie) :
                 foreach ($_SESSION['cart'] as $cookieId) :
                     if ($key == $cookieId) {
-                        ?><li><?= $cookie['name'] ?></li><?php
-                    } else {
-                        echo '';
-                    }
-                endforeach;
-            endforeach;
-        ?>
+        ?><li><?= $cookie['name'] ?></li><?php
+                                        } else {
+                                            echo '';
+                                        }
+                                    endforeach;
+                                endforeach;
+                                            ?>
     </div>
 </section>
 <?php require 'inc/foot.php'; ?>
